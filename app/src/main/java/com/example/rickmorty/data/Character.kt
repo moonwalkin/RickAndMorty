@@ -1,10 +1,10 @@
 package com.example.rickmorty.data
 
-data class Character(
+class Character(
     val created: String,
     val episode: List<String>,
     val gender: String,
-    val id: Int,
+    id: Int,
     val image: String,
     val location: Location,
     val name: String,
@@ -13,4 +13,4 @@ data class Character(
     val status: String,
     val type: String,
     val url: String
-)
+) : Item(id)

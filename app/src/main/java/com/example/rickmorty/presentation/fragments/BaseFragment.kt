@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import com.example.rickmorty.RickMortyApp
-import com.example.rickmorty.presentation.ViewModelFactory
+import com.example.rickmorty.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+
     private var _binding: VB? = null
     protected val binding: VB
         get() = checkNotNull(_binding) { "Fragment == null" }

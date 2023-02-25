@@ -1,11 +1,11 @@
 package com.example.rickmorty.data
 
-data class LocationInfo(
+class LocationInfo(
     val created: String,
     val dimension: String,
-    val id: Int,
+    id: Int,
     val name: String,
     val residents: List<String>,
     val type: String,
     val url: String
-)
+) : Item(id)
