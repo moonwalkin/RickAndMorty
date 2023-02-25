@@ -3,17 +3,16 @@ package com.example.rickmorty.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.viewbinding.ViewBinding
 import com.example.rickmorty.data.Character
-import com.example.rickmorty.data.Episode
 import com.example.rickmorty.data.Item
 import com.example.rickmorty.data.LocationInfo
 import com.example.rickmorty.databinding.ItemCharacterBinding
 import com.example.rickmorty.databinding.ItemEpisodeBinding
 import com.example.rickmorty.databinding.ItemLocationBinding
 
-class RickMortyAdapter : ListAdapter<Item, ViewHolder>(CharacterDiffUtil()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+class RickMortyAdapter : ListAdapter<Item, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder<ViewBinding> {
         val viewHolder = when (viewType) {
             CHARACTER_ITEM -> CharacterViewHolder(ItemCharacterBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -36,18 +35,8 @@ class RickMortyAdapter : ListAdapter<Item, ViewHolder>(CharacterDiffUtil()) {
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        when (holder) {
-            is CharacterViewHolder -> {
-                holder.bind(getItem(position) as Character)
-            }
-            is LocationViewHolder -> {
-                holder.bind(getItem(position) as LocationInfo)
-            }
-            is EpisodeViewHolder -> {
-                holder.bind(getItem(position) as Episode)
-            }
-        }
+    override fun onBindViewHolder(holder: AbstractViewHolder<ViewBinding>, position: Int) {
+        holder.bind(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -64,12 +53,11 @@ class RickMortyAdapter : ListAdapter<Item, ViewHolder>(CharacterDiffUtil()) {
         }
     }
     companion object {
-        private const val CHARACTER_ITEM = 1
-        private const val LOCATION_ITEM = 2
-        private const val EPISODE_ITEM = 3
+        const val CHARACTER_ITEM = 1
+        const val LOCATION_ITEM = 2
+        const val EPISODE_ITEM = 3
     }
 }
-
 
 
 
