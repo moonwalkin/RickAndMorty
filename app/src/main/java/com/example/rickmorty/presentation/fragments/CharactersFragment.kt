@@ -9,7 +9,7 @@ import com.example.rickmorty.presentation.RickMortyAdapter
 
 class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
 
-    override val viewModel: CharacterViewModel by viewModels { factory }
+    private val viewModel: CharacterViewModel by viewModels { factory }
     override fun getViewBinding() = FragmentCharactersBinding.inflate(layoutInflater)
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)

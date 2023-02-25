@@ -16,7 +16,6 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     protected val binding: VB
         get() = checkNotNull(_binding) { "Fragment == null" }
 
-    abstract val viewModel: ViewModel
     abstract fun getViewBinding(): VB
 
     @Inject

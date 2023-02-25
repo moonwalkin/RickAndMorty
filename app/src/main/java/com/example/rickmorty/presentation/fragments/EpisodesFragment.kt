@@ -5,7 +5,7 @@ import com.example.rickmorty.databinding.FragmentEpisodesBinding
 import com.example.rickmorty.presentation.viewmodels.EpisodeViewModel
 
 class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
-    override val viewModel: EpisodeViewModel by viewModels { factory }
+    private val viewModel: EpisodeViewModel by viewModels { factory }
 
     override fun getViewBinding() = FragmentEpisodesBinding.inflate(layoutInflater)
 }
