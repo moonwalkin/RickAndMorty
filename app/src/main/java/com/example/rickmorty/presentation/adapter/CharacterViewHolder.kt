@@ -1,45 +1,19 @@
 package com.example.rickmorty.presentation.adapter
 
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rickmorty.R
 import com.example.rickmorty.data.Character
-import com.example.rickmorty.data.Episode
-import com.example.rickmorty.data.LocationInfo
+import com.example.rickmorty.data.Item
 import com.example.rickmorty.databinding.ItemCharacterBinding
-import com.example.rickmorty.databinding.ItemEpisodeBinding
-import com.example.rickmorty.databinding.ItemLocationBinding
 
-class CharacterViewHolder(private val binding: ItemCharacterBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(character: Character) {
+class CharacterViewHolder(binding: ItemCharacterBinding) :
+    AbstractViewHolder<ItemCharacterBinding>(binding) {
+    override fun bind(item: Item) {
+        val character = item as Character
         binding.apply {
             tvName.text = character.name
             Glide.with(root).load(character.image)
                 .circleCrop()
                 .into(ivCharacter)
         }
-
-    }
-}
-
-class LocationViewHolder(private val binding: ItemLocationBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(location: LocationInfo) {
-        binding.apply {
-            tvName.text = location.name
-        }
-
-    }
-}
-
-class EpisodeViewHolder(private val binding: ItemEpisodeBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(episode: Episode) {
-        binding.apply {
-            tvEpisodeName.text =
-                root.context.getString(R.string.episode_info, episode.episode, episode.name)
-        }
-
     }
 }
