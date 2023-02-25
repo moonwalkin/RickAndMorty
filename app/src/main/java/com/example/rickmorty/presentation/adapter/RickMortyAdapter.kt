@@ -3,26 +3,49 @@ package com.example.rickmorty.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rickmorty.data.Character
+import com.example.rickmorty.data.Episode
 import com.example.rickmorty.data.Item
 import com.example.rickmorty.data.LocationInfo
 import com.example.rickmorty.databinding.ItemCharacterBinding
+import com.example.rickmorty.databinding.ItemEpisodeBinding
+import com.example.rickmorty.databinding.ItemLocationBinding
 
-class RickMortyAdapter : ListAdapter<Item, CharacterViewHolder>(CharacterDiffUtil()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        return CharacterViewHolder(
-            ItemCharacterBinding.inflate(
+class RickMortyAdapter : ListAdapter<Item, ViewHolder>(CharacterDiffUtil()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val viewHolder = when (viewType) {
+            CHARACTER_ITEM -> CharacterViewHolder(ItemCharacterBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
-        )
+            ))
+            LOCATION_ITEM -> LocationViewHolder(
+                ItemLocationBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ))
+            else -> EpisodeViewHolder(
+                ItemEpisodeBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                ))
+        }
+        return viewHolder
     }
 
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        when (val item = getItem(position)) {
-            is Character -> {
-                holder.bind(item)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        when (holder) {
+            is CharacterViewHolder -> {
+                holder.bind(getItem(position) as Character)
+            }
+            is LocationViewHolder -> {
+                holder.bind(getItem(position) as LocationInfo)
+            }
+            is EpisodeViewHolder -> {
+                holder.bind(getItem(position) as Episode)
             }
         }
     }

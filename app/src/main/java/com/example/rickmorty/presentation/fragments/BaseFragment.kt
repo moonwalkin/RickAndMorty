@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.rickmorty.RickMortyApp
+import com.example.rickmorty.di.ApplicationComponent
+import com.example.rickmorty.presentation.adapter.RickMortyAdapter
 import com.example.rickmorty.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
@@ -16,12 +18,13 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     protected val binding: VB
         get() = checkNotNull(_binding) { "Fragment == null" }
 
+    protected val adapter = RickMortyAdapter()
     abstract fun getViewBinding(): VB
 
     @Inject
     lateinit var factory: ViewModelFactory
 
-    protected val component by lazy {
+    protected val component: ApplicationComponent by lazy {
         (requireActivity().application as RickMortyApp).component
     }
 

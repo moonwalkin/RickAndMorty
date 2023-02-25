@@ -3,4 +3,5 @@
     <string name="locations">Locations</string>
     <string name="characters">Characters</string>
     <string name="episodes">Episodes</string>
+    <string name="episode_info">%1$s %2$s</string>
 </resources>

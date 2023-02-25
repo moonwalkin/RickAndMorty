@@ -18,7 +18,6 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = RickMortyAdapter()
         binding.recyclerView.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner) {
             adapter.submitList(it.results)
