@@ -2,6 +2,7 @@ package com.example.rickmorty.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rickmorty.R
 import com.example.rickmorty.data.Character
 import com.example.rickmorty.data.Episode
 import com.example.rickmorty.data.LocationInfo
@@ -36,6 +37,8 @@ class EpisodeViewHolder(private val binding: ItemEpisodeBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(episode: Episode) {
         binding.apply {
+            tvEpisodeName.text =
+                root.context.getString(R.string.episode_info, episode.episode, episode.name)
         }
 
     }
