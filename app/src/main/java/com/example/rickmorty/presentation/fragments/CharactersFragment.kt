@@ -19,7 +19,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it.results)
+            adapter.submitList(it)
         }
     }
 }

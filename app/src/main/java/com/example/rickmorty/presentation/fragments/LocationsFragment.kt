@@ -1,9 +1,7 @@
 package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +23,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         binding.recyclerView.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it.results)
+            adapter.submitList(it)
         }
     }
 }

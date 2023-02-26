@@ -1,14 +1,14 @@
 package com.example.rickmorty.presentation.adapter
 
 import com.bumptech.glide.Glide
-import com.example.rickmorty.data.Character
-import com.example.rickmorty.data.Item
 import com.example.rickmorty.databinding.ItemCharacterBinding
+import com.example.rickmorty.domain.models.CharacterUi
+import com.example.rickmorty.domain.models.ItemUi
 
 class CharacterViewHolder(binding: ItemCharacterBinding) :
     AbstractViewHolder<ItemCharacterBinding>(binding) {
-    override fun bind(item: Item, listener: (Int) -> Unit) {
-        val character = item as Character
+    override fun bind(item: ItemUi, listener: (Int) -> Unit) {
+        val character = item as CharacterUi
         binding.apply {
             tvName.text = character.name
             itemView.setOnClickListener {

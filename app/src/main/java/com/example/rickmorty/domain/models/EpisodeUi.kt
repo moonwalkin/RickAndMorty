@@ -1,8 +1,9 @@
-package com.example.rickmorty.data
+package com.example.rickmorty.domain.models
 
-class Episode(
+
+class EpisodeUi(
     val air_date: String,
     val episode: String,
     id: Int,
     val name: String,
-) : Item(id)
+): ItemUi(id)

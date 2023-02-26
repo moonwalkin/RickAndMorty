@@ -2,17 +2,16 @@ package com.example.rickmorty.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
-import com.example.rickmorty.data.Character
-import com.example.rickmorty.data.Item
-import com.example.rickmorty.data.LocationInfo
 import com.example.rickmorty.databinding.ItemCharacterBinding
 import com.example.rickmorty.databinding.ItemEpisodeBinding
 import com.example.rickmorty.databinding.ItemLocationBinding
+import com.example.rickmorty.domain.models.CharacterUi
+import com.example.rickmorty.domain.models.ItemUi
+import com.example.rickmorty.domain.models.LocationUi
 
-class RickMortyAdapter(private val listener: (Int) -> Unit) : ListAdapter<Item, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
+class RickMortyAdapter(private val listener: (Int) -> Unit) : ListAdapter<ItemUi, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder<ViewBinding> {
         val viewHolder = when (viewType) {
             CHARACTER_ITEM -> CharacterViewHolder(ItemCharacterBinding.inflate(
@@ -42,10 +41,10 @@ class RickMortyAdapter(private val listener: (Int) -> Unit) : ListAdapter<Item, 
 
     override fun getItemViewType(position: Int): Int {
         return when(getItem(position)) {
-            is Character -> {
+            is CharacterUi -> {
                 CHARACTER_ITEM
             }
-            is LocationInfo -> {
+            is LocationUi -> {
                 LOCATION_ITEM
             }
             else -> {

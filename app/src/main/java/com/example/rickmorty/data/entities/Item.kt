@@ -1,4 +1,4 @@
-package com.example.rickmorty.data
+package com.example.rickmorty.data.entities
 
 open class Item(val id: Int) {
     override fun equals(other: Any?): Boolean {

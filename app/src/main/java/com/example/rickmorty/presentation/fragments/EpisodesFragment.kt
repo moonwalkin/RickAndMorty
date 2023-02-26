@@ -23,7 +23,7 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         binding.recyclerView.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it.results)
+            adapter.submitList(it)
         }
     }
 }
