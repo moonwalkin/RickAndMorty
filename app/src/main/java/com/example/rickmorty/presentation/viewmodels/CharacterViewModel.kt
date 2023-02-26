@@ -8,8 +8,13 @@ import com.example.rickmorty.domain.RickMortyRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.example.rickmorty.data.Character
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
-class CharacterViewModel @Inject constructor(private val repository: RickMortyRepository) :
+class CharacterViewModel @Inject constructor(
+    private val repository: RickMortyRepository,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
+) :
     ViewModel() {
 
     val singleCharacter = MutableLiveData<Character>()
@@ -20,11 +25,12 @@ class CharacterViewModel @Inject constructor(private val repository: RickMortyRe
     }
 
 
-    fun fetchSingleCharacter(id: Int) = viewModelScope.launch {
+    fun fetchSingleCharacter(id: Int) = viewModelScope.launch(dispatcher) {
         singleCharacter.value = repository.fetchSingleCharacter(id)
     }
 
-    private fun fetch() = viewModelScope.launch {
+    private fun fetch() = viewModelScope.launch(dispatcher) {
         liveData.value = repository.fetchCharacters()
     }
+
 }

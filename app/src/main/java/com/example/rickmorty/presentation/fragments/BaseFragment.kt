@@ -20,7 +20,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         get() = checkNotNull(_binding) { "Fragment == null" }
 
     protected val adapter = RickMortyAdapter { id ->
-        navigate().showDetailCharacter(id)
+        navigate().showDetails(id)
     }
     abstract fun getViewBinding(): VB
 

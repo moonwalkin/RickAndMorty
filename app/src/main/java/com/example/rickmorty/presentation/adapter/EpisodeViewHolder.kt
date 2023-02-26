@@ -12,6 +12,9 @@ class EpisodeViewHolder(binding: ItemEpisodeBinding) :
         binding.apply {
             tvEpisodeName.text =
                 root.context.getString(R.string.episode_info, episode.episode, episode.name)
+            itemView.setOnClickListener {
+                listener(episode.id)
+            }
         }
     }
 }

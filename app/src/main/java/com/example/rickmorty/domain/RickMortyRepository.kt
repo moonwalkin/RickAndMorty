@@ -1,9 +1,6 @@
 package com.example.rickmorty.domain
 
-import com.example.rickmorty.data.ResponseCharacters
-import com.example.rickmorty.data.ResponseEpisodes
-import com.example.rickmorty.data.ResponseLocations
-import com.example.rickmorty.data.Character
+import com.example.rickmorty.data.*
 
 interface RickMortyRepository {
 
@@ -14,4 +11,6 @@ interface RickMortyRepository {
     suspend fun fetchCharacters(): ResponseCharacters
 
     suspend fun fetchSingleCharacter(id: Int): Character
+
+    suspend fun fetchSingleLocation(id: Int): LocationInfo
 }
