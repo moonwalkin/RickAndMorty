@@ -7,7 +7,7 @@ import com.example.rickmorty.databinding.ItemEpisodeBinding
 
 class EpisodeViewHolder(binding: ItemEpisodeBinding) :
     AbstractViewHolder<ItemEpisodeBinding>(binding) {
-    override fun bind(item: Item) {
+    override fun bind(item: Item, listener: (Int) -> Unit) {
         val episode = item as Episode
         binding.apply {
             tvEpisodeName.text =

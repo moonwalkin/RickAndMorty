@@ -6,7 +6,7 @@ import com.example.rickmorty.databinding.ItemLocationBinding
 
 class LocationViewHolder(binding: ItemLocationBinding) :
     AbstractViewHolder<ItemLocationBinding>(binding) {
-    override fun bind(item: Item) {
+    override fun bind(item: Item, listener: (Int) -> Unit) {
         val location = item as LocationInfo
         binding.apply {
             tvName.text = location.name
