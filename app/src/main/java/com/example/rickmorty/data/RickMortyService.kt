@@ -20,5 +20,8 @@ interface RickMortyService {
     @GET("location/{id}")
     suspend fun fetchSingleLocation(@Path("id") id: Int): LocationInfo
 
+    @GET("episode/{id}")
+    suspend fun fetchSingleEpisode(@Path("id") id: Int): Episode
+
 
 }

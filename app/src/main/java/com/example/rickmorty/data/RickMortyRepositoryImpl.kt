@@ -50,4 +50,12 @@ class RickMortyRepositoryImpl @Inject constructor(private val service: RickMorty
             throw e
         }
     }
+
+    override suspend fun fetchSingleEpisode(id: Int): Episode {
+        return try {
+            service.fetchSingleEpisode(id)
+        } catch (e: Exception) {
+            throw e
+        }
+    }
 }

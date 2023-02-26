@@ -13,4 +13,6 @@ interface RickMortyRepository {
     suspend fun fetchSingleCharacter(id: Int): Character
 
     suspend fun fetchSingleLocation(id: Int): LocationInfo
+
+    suspend fun fetchSingleEpisode(id: Int): Episode
 }
