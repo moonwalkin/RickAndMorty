@@ -8,7 +8,8 @@ import com.squareup.moshi.Json
 class Character(
     @field:Json(name = "gender")
     val gender: String,
-    @Json(name = "id") id: Int,
+    @field:Json(name = "id")
+    val id: Int,
     @field:Json(name = "image")
     val image: String,
     @field:Json(name = "location")
@@ -19,7 +20,7 @@ class Character(
     val species: String,
     @field:Json(name = "status")
     val status: String,
-) : Item(id), Mapper<CharacterUi> {
+) : Mapper<CharacterUi> {
     override fun map(): CharacterUi {
         return CharacterUi(
             gender = gender,

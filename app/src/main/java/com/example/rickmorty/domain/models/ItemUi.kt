@@ -1,6 +1,6 @@
 package com.example.rickmorty.domain.models
 
-open class ItemUi(val id: Int) {
+open class ItemUi(val id: Int, val name: String) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -8,11 +8,14 @@ open class ItemUi(val id: Int) {
         other as ItemUi
 
         if (id != other.id) return false
+        if (name != other.name) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        return id
+        var result = id
+        result = 31 * result + name.hashCode()
+        return result
     }
 }

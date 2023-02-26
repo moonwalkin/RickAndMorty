@@ -7,12 +7,13 @@ import com.squareup.moshi.Json
 class LocationInfo(
     @field:Json(name = "dimension")
     val dimension: String,
-    @Json(name = "id") id: Int,
+    @Json(name = "id")
+    val id: Int,
     @field:Json(name = "name")
     val name: String,
     @field:Json(name = "type")
     val type: String
-) : Item(id), Mapper<LocationUi> {
+) : Mapper<LocationUi> {
     override fun map(): LocationUi {
         return LocationUi(
             dimension = dimension,

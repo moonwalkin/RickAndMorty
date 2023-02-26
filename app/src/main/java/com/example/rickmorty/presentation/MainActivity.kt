@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(), Navigator {
             savedInstanceState: Bundle?
         ) {
             currentFragment = f
+            showNavigateUpButton()
         }
     }
 
@@ -51,6 +52,19 @@ class MainActivity : AppCompatActivity(), Navigator {
             else -> {
                 launchFragment(DetailsEpisodeFragment.newInstance(id))
             }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
+    }
+
+    private fun showNavigateUpButton() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        } else {
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
         }
     }
 

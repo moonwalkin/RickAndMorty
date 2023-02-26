@@ -1,7 +1,7 @@
 package com.example.rickmorty.di
 
 import com.example.rickmorty.data.repository.RickMortyRepositoryImpl
-import com.example.rickmorty.data.RickMortyService
+import com.example.rickmorty.data.network.RickMortyService
 import com.example.rickmorty.domain.repository.RickMortyRepository
 import dagger.Binds
 import dagger.Module
