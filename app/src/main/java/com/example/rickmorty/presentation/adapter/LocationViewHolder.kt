@@ -10,6 +10,9 @@ class LocationViewHolder(binding: ItemLocationBinding) :
         val location = item as LocationInfo
         binding.apply {
             tvName.text = location.name
+            itemView.setOnClickListener {
+                listener(location.id)
+            }
         }
     }
 }

@@ -6,6 +6,8 @@ import com.example.rickmorty.domain.RickMortyRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,6 +21,8 @@ interface DataModule {
     fun bindRepository(impl: RickMortyRepositoryImpl): RickMortyRepository
 
     companion object {
+        @Provides
+        fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
         @Provides
         fun provideRetrofit(client: OkHttpClient) = Retrofit.Builder()

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.rickmorty.databinding.FragmentCharactersBinding
 import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
-import com.example.rickmorty.presentation.adapter.RickMortyAdapter
 
 class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
 

@@ -5,12 +5,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.rickmorty.R
-import com.example.rickmorty.databinding.FragmentDetailCharacterBinding
+import com.example.rickmorty.databinding.FragmentDetailsCharacterBinding
 import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
 import com.example.rickmorty.data.Character
 
-class DetailCharacterFragment : BaseFragment<FragmentDetailCharacterBinding>() {
-    override fun getViewBinding() = FragmentDetailCharacterBinding.inflate(layoutInflater)
+class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>() {
+    override fun getViewBinding() = FragmentDetailsCharacterBinding.inflate(layoutInflater)
 
     private val viewModel: CharacterViewModel by viewModels { factory }
 
@@ -42,7 +42,7 @@ class DetailCharacterFragment : BaseFragment<FragmentDetailCharacterBinding>() {
     companion object {
         private const val CHARACTER_ID = "character_id"
 
-        fun newInstance(id: Int) = DetailCharacterFragment().apply {
+        fun newInstance(id: Int) = DetailsCharacterFragment().apply {
             arguments = Bundle().apply {
                 putInt(CHARACTER_ID, id)
             }

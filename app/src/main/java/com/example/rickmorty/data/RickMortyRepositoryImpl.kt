@@ -1,6 +1,12 @@
 package com.example.rickmorty.data
 
+import androidx.lifecycle.LiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.rickmorty.domain.RickMortyRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RickMortyRepositoryImpl @Inject constructor(private val service: RickMortyService) :
@@ -32,6 +38,14 @@ class RickMortyRepositoryImpl @Inject constructor(private val service: RickMorty
     override suspend fun fetchSingleCharacter(id: Int): Character {
         return try {
             service.fetchSingleCharacter(id)
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    override suspend fun fetchSingleLocation(id: Int): LocationInfo {
+        return try {
+            service.fetchSingleLocation(id)
         } catch (e: Exception) {
             throw e
         }
