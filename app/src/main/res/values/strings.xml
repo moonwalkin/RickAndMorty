@@ -17,6 +17,6 @@
 
     <string name="episode_air_date">Air date: %1$s</string>
     <string name="episode">Episode: %1$s</string>
-    <string name="episode_name">Name %1$s</string>
+    <string name="episode_name">Name: %1$s</string>
 
 </resources>

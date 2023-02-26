@@ -22,7 +22,8 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         binding.recyclerView.adapter = adapter
-        viewModel.liveData.observe(viewLifecycleOwner) {
+        viewModel.fetchListLocations()
+        viewModel.observeListLocations(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }

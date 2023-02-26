@@ -1,6 +1,6 @@
 package com.example.rickmorty.data.repository
 
-import com.example.rickmorty.data.RickMortyService
+import com.example.rickmorty.data.network.RickMortyService
 import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.models.EpisodeUi
 import com.example.rickmorty.domain.models.LocationUi

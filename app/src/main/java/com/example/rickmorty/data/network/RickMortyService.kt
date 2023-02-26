@@ -1,4 +1,4 @@
-package com.example.rickmorty.data
+package com.example.rickmorty.data.network
 
 import com.example.rickmorty.data.entities.*
 import retrofit2.http.GET

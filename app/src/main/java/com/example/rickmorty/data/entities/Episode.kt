@@ -9,11 +9,11 @@ class Episode(
     val air_date: String,
     @field:Json(name = "episode")
     val episode: String,
-    @Json(name = "id")
-    id: Int,
+    @field:Json(name = "id")
+    val id: Int,
     @field:Json(name = "name")
     val name: String,
-) : Item(id), Mapper<EpisodeUi> {
+) : Mapper<EpisodeUi> {
     override fun map(): EpisodeUi {
         return EpisodeUi(
             air_date = air_date,

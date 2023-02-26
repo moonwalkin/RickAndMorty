@@ -7,7 +7,7 @@ class CharacterUi(
     id: Int,
     val image: String,
     val location: Location,
-    val name: String,
+    name: String,
     val species: String,
     val status: String,
-) : ItemUi(id)
+) : ItemUi(id, name)
