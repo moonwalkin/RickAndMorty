@@ -1,6 +1,7 @@
 package com.example.rickmorty.data
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface RickMortyService {
     @GET("location")
@@ -11,6 +12,9 @@ interface RickMortyService {
 
     @GET("episode")
     suspend fun fetchEpisodes(): ResponseEpisodes
+
+    @GET("character/{id}")
+    suspend fun fetchSingleCharacter(@Path("id") id: Int): Character
 
 
 }

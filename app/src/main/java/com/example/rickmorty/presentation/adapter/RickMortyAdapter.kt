@@ -11,7 +11,7 @@ import com.example.rickmorty.databinding.ItemCharacterBinding
 import com.example.rickmorty.databinding.ItemEpisodeBinding
 import com.example.rickmorty.databinding.ItemLocationBinding
 
-class RickMortyAdapter : ListAdapter<Item, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
+class RickMortyAdapter(private val listener: (Int) -> Unit) : ListAdapter<Item, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder<ViewBinding> {
         val viewHolder = when (viewType) {
             CHARACTER_ITEM -> CharacterViewHolder(ItemCharacterBinding.inflate(
@@ -36,7 +36,7 @@ class RickMortyAdapter : ListAdapter<Item, AbstractViewHolder<ViewBinding>>(Char
     }
 
     override fun onBindViewHolder(holder: AbstractViewHolder<ViewBinding>, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), listener)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -53,11 +53,8 @@ class RickMortyAdapter : ListAdapter<Item, AbstractViewHolder<ViewBinding>>(Char
         }
     }
     companion object {
-        const val CHARACTER_ITEM = 1
-        const val LOCATION_ITEM = 2
-        const val EPISODE_ITEM = 3
+        private const val CHARACTER_ITEM = 1
+        private const val LOCATION_ITEM = 2
+        private const val EPISODE_ITEM = 3
     }
 }
-
-
-

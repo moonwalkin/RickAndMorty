@@ -3,5 +3,10 @@
     <string name="locations">Locations</string>
     <string name="characters">Characters</string>
     <string name="episodes">Episodes</string>
+    <string name="character_name">Name: %1$s</string>
+    <string name="character_location">Location: %1$s</string>
+    <string name="character_species">Species: %1$s</string>
+    <string name="character_status">Status: %1$s</string>
+    <string name="character_gender">Gender: %1$s</string>
     <string name="episode_info">%1$s %2$s</string>
 </resources>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.rickmorty.RickMortyApp
 import com.example.rickmorty.di.ApplicationComponent
+import com.example.rickmorty.navigate
 import com.example.rickmorty.presentation.adapter.RickMortyAdapter
 import com.example.rickmorty.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
@@ -18,7 +19,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     protected val binding: VB
         get() = checkNotNull(_binding) { "Fragment == null" }
 
-    protected val adapter = RickMortyAdapter()
+    protected val adapter = RickMortyAdapter { id ->
+        navigate().showDetailCharacter(id)
+    }
     abstract fun getViewBinding(): VB
 
     @Inject

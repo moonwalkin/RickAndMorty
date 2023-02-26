@@ -8,13 +8,5 @@ import com.example.rickmorty.data.Item
 abstract class AbstractViewHolder<out VB : ViewBinding>(
     val binding: VB
     ) : RecyclerView.ViewHolder(binding.root) {
-    abstract fun bind(item: Item)
+    abstract fun bind(item: Item, listener: (Int) -> Unit)
 }
-
-
-
-
-
-
-
-

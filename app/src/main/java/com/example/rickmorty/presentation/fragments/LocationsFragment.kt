@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickmorty.databinding.FragmentLocationsBinding
 import com.example.rickmorty.presentation.viewmodels.LocationViewModel
 
@@ -20,7 +22,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         binding.recyclerView.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner) {
             adapter.submitList(it.results)
