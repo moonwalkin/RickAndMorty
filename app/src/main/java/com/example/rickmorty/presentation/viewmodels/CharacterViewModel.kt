@@ -3,10 +3,9 @@ package com.example.rickmorty.presentation.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickmorty.data.ResponseCharacters
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.example.rickmorty.data.Character
+import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.usecases.FetchAllCharactersUseCase
 import com.example.rickmorty.domain.usecases.FetchSingleCharacterUseCase
 import kotlinx.coroutines.CoroutineDispatcher
@@ -19,8 +18,8 @@ class CharacterViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    val singleCharacter = MutableLiveData<Character>()
-    val liveData = MutableLiveData<ResponseCharacters>()
+    val singleCharacter = MutableLiveData<CharacterUi>()
+    val liveData = MutableLiveData<List<CharacterUi>>()
 
     init {
         fetch()

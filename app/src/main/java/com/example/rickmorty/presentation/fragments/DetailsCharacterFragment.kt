@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsCharacterBinding
 import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
-import com.example.rickmorty.data.Character
+import com.example.rickmorty.domain.models.CharacterUi
 
 class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>() {
     override fun getViewBinding() = FragmentDetailsCharacterBinding.inflate(layoutInflater)
@@ -27,7 +27,7 @@ class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>()
         }
     }
 
-    private fun initialize(character: Character) {
+    private fun initialize(character: CharacterUi) {
         binding.apply {
             tvName.text = getString(R.string.character_name, character.name)
             tvGender.text = getString(R.string.character_gender, character.gender)

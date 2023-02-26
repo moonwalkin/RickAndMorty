@@ -1,14 +1,13 @@
-package com.example.rickmorty.data
+package com.example.rickmorty.domain.models
 
-import com.squareup.moshi.Json
+import com.example.rickmorty.data.entities.Location
 
-
-class Character(
+class CharacterUi(
     val gender: String,
-    @Json(name = "id") id: Int,
+    id: Int,
     val image: String,
     val location: Location,
     val name: String,
     val species: String,
     val status: String,
-) : Item(id)
+) : ItemUi(id)

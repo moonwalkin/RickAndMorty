@@ -3,9 +3,7 @@ package com.example.rickmorty.presentation.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickmorty.data.LocationInfo
-import com.example.rickmorty.data.ResponseLocations
-import com.example.rickmorty.domain.RickMortyRepository
+import com.example.rickmorty.domain.models.LocationUi
 import com.example.rickmorty.domain.usecases.FetchAllLocationsUseCase
 import com.example.rickmorty.domain.usecases.FetchSingleLocationUseCase
 import kotlinx.coroutines.CoroutineDispatcher
@@ -19,8 +17,8 @@ class LocationViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<ResponseLocations>()
-    val singleLocation = MutableLiveData<LocationInfo>()
+    val liveData = MutableLiveData<List<LocationUi>>()
+    val singleLocation = MutableLiveData<LocationUi>()
 
     init {
         fetch()
