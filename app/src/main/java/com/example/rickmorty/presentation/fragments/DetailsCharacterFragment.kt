@@ -22,12 +22,12 @@ class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchSingleCharacter(requireArguments().getInt(CHARACTER_ID))
-        viewModel.singleCharacter.observe(viewLifecycleOwner) { character ->
-            initialize(character)
+        viewModel.observeSingleItem(viewLifecycleOwner) { character ->
+            showDetails(character)
         }
     }
 
-    private fun initialize(character: CharacterUi) {
+    private fun showDetails(character: CharacterUi) {
         binding.apply {
             tvName.text = getString(R.string.character_name, character.name)
             tvGender.text = getString(R.string.character_gender, character.gender)

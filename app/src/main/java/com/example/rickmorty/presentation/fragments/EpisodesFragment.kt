@@ -22,7 +22,8 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         binding.recyclerView.adapter = adapter
-        viewModel.liveData.observe(viewLifecycleOwner) {
+        viewModel.fetchListEpisodes()
+        viewModel.observeListEpisodes(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }

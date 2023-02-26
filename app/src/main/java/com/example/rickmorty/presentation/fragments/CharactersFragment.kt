@@ -18,7 +18,8 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.adapter = adapter
-        viewModel.liveData.observe(viewLifecycleOwner) {
+        viewModel.fetchListCharacters()
+        viewModel.observeListItems(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }

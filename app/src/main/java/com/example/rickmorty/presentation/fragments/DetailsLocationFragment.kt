@@ -19,7 +19,7 @@ class DetailsLocationFragment : BaseFragment<FragmentDetailsLocationBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchSingleLocation(requireArguments().getInt(LOCATION_ID))
-        viewModel.singleLocation.observe(viewLifecycleOwner) { location ->
+        viewModel.observeSingleLocation(viewLifecycleOwner) { location ->
             binding.apply {
                 tvDimension.text = getString(R.string.location_dimension,location.dimension)
                 tvLocationName.text = getString(R.string.location_name, location.name)

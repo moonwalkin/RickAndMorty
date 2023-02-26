@@ -2,7 +2,12 @@ package com.example.rickmorty.di
 
 import com.example.rickmorty.data.repository.RickMortyRepositoryImpl
 import com.example.rickmorty.data.network.RickMortyService
+import com.example.rickmorty.domain.models.CharacterUi
+import com.example.rickmorty.domain.models.EpisodeUi
+import com.example.rickmorty.domain.models.LocationUi
 import com.example.rickmorty.domain.repository.RickMortyRepository
+import com.example.rickmorty.presentation.Communication
+import com.example.rickmorty.presentation.CommunicationImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -20,9 +25,10 @@ interface DataModule {
     @Binds
     fun bindRepository(impl: RickMortyRepositoryImpl): RickMortyRepository
 
+
+
     companion object {
-        @Provides
-        fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+
 
         @Provides
         fun provideRetrofit(client: OkHttpClient) = Retrofit.Builder()
