@@ -5,10 +5,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentLocationsBinding
 import com.example.rickmorty.presentation.viewmodels.LocationViewModel
 
-class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
+class LocationsFragment : BaseFragment<FragmentLocationsBinding>(), HasCustomTitle {
     private val viewModel: LocationViewModel by viewModels { factory }
 
     override fun getViewBinding() = FragmentLocationsBinding.inflate(layoutInflater)
@@ -27,4 +29,6 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
             adapter.submitList(it)
         }
     }
+
+    override fun getTitleRes() = R.string.title_locations
 }

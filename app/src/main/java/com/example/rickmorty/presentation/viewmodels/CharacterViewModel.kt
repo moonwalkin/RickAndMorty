@@ -10,6 +10,7 @@ import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.usecases.FetchAllCharactersUseCase
 import com.example.rickmorty.domain.usecases.FetchSingleCharacterUseCase
 import com.example.rickmorty.presentation.Communication
+import com.example.rickmorty.presentation.State
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 

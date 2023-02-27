@@ -38,5 +38,4 @@ class EpisodeViewModel @Inject constructor(
         communication.observeListItems(owner, observer)
     }
 
-
 }

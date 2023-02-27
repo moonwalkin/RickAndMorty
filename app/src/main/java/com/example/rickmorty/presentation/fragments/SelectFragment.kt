@@ -2,10 +2,12 @@ package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
+import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentSelectBinding
 import com.example.rickmorty.navigate
 
-class SelectFragment : BaseFragment<FragmentSelectBinding>() {
+class SelectFragment : BaseFragment<FragmentSelectBinding>(), HasCustomTitle {
 
     override fun getViewBinding() = FragmentSelectBinding.inflate(layoutInflater)
 
@@ -22,4 +24,6 @@ class SelectFragment : BaseFragment<FragmentSelectBinding>() {
             navigate().showLocations()
         }
     }
+    override fun getTitleRes() = R.string.title_home
+
 }

@@ -3,12 +3,13 @@ package com.example.rickmorty.presentation.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.example.rickmorty.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsEpisodeBinding
 import com.example.rickmorty.domain.models.EpisodeUi
 import com.example.rickmorty.presentation.viewmodels.EpisodeViewModel
 
-class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>() {
+class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>(), HasCustomTitle {
 
     private val viewModel: EpisodeViewModel by viewModels { factory }
 
@@ -45,4 +46,6 @@ class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>() {
             }
         }
     }
+
+    override fun getTitleRes() = R.string.title_episode_details
 }

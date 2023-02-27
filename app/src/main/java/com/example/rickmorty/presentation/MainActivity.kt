@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
+import com.example.rickmorty.HasCustomTitle
 import com.example.rickmorty.Navigator
 import com.example.rickmorty.R
 import com.example.rickmorty.presentation.fragments.*
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         ) {
             currentFragment = f
             showNavigateUpButton()
+            updateTitle()
         }
     }
 
@@ -30,11 +32,6 @@ class MainActivity : AppCompatActivity(), Navigator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportFragmentManager.registerFragmentLifecycleCallbacks(lifecycleCallback, false)
-    }
-
-    private fun launchFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
-            .addToBackStack(null).commit()
     }
 
     override fun showLocations() {
@@ -60,14 +57,6 @@ class MainActivity : AppCompatActivity(), Navigator {
         return true
     }
 
-    private fun showNavigateUpButton() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        } else {
-            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        }
-    }
-
     override fun showEpisodes() {
         launchFragment(EpisodesFragment())
     }
@@ -79,5 +68,25 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun onDestroy() {
         super.onDestroy()
         supportFragmentManager.unregisterFragmentLifecycleCallbacks(lifecycleCallback)
+    }
+
+    private fun launchFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null).commit()
+    }
+
+    private fun showNavigateUpButton() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        } else {
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        }
+    }
+
+    private fun updateTitle() {
+        val fragment = currentFragment
+        if (fragment is HasCustomTitle) {
+            title = getString(fragment.getTitleRes())
+        }
     }
 }

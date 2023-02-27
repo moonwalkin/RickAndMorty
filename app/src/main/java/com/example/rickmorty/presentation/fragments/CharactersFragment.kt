@@ -3,10 +3,12 @@ package com.example.rickmorty.presentation.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentCharactersBinding
 import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
 
-class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
+class CharactersFragment : BaseFragment<FragmentCharactersBinding>(), HasCustomTitle {
 
     private val viewModel: CharacterViewModel by viewModels { factory }
     override fun getViewBinding() = FragmentCharactersBinding.inflate(layoutInflater)
@@ -23,4 +25,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
             adapter.submitList(it)
         }
     }
+
+    override fun getTitleRes() = R.string.title_characters
+
 }
