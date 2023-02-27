@@ -3,11 +3,12 @@ package com.example.rickmorty.presentation.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.example.rickmorty.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsLocationBinding
 import com.example.rickmorty.presentation.viewmodels.LocationViewModel
 
-class DetailsLocationFragment : BaseFragment<FragmentDetailsLocationBinding>() {
+class DetailsLocationFragment : BaseFragment<FragmentDetailsLocationBinding>(), HasCustomTitle {
     override fun getViewBinding() = FragmentDetailsLocationBinding.inflate(layoutInflater)
     private val viewModel: LocationViewModel by viewModels { factory }
 
@@ -26,7 +27,6 @@ class DetailsLocationFragment : BaseFragment<FragmentDetailsLocationBinding>() {
                 tvType.text = getString(R.string.location_type, location.type)
             }
         }
-
     }
 
     companion object {
@@ -38,4 +38,6 @@ class DetailsLocationFragment : BaseFragment<FragmentDetailsLocationBinding>() {
             }
         }
     }
+
+    override fun getTitleRes() = R.string.title_location_details
 }

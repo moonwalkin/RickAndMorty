@@ -5,10 +5,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentEpisodesBinding
 import com.example.rickmorty.presentation.viewmodels.EpisodeViewModel
 
-class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
+class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(), HasCustomTitle {
     private val viewModel: EpisodeViewModel by viewModels { factory }
 
     override fun getViewBinding() = FragmentEpisodesBinding.inflate(layoutInflater)
@@ -27,4 +29,6 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
             adapter.submitList(it)
         }
     }
+
+    override fun getTitleRes() = R.string.title_episodes
 }

@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.rickmorty.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsCharacterBinding
 import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
 import com.example.rickmorty.domain.models.CharacterUi
 
-class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>() {
+class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>(), HasCustomTitle {
     override fun getViewBinding() = FragmentDetailsCharacterBinding.inflate(layoutInflater)
 
     private val viewModel: CharacterViewModel by viewModels { factory }
@@ -48,4 +49,6 @@ class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>()
             }
         }
     }
+
+    override fun getTitleRes() = R.string.title_character_details
 }
