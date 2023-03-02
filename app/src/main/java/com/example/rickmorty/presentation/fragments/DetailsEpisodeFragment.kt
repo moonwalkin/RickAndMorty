@@ -37,6 +37,8 @@ class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>(), Ha
         }
     }
 
+    override fun getTitleRes() = R.string.title_episode_details
+
     companion object {
         private const val EPISODE_ID = "episode_id"
 
@@ -47,5 +49,4 @@ class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>(), Ha
         }
     }
 
-    override fun getTitleRes() = R.string.title_episode_details
 }

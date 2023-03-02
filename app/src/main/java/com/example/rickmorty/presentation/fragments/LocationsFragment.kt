@@ -31,4 +31,5 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(), HasCustomTit
     }
 
     override fun getTitleRes() = R.string.title_locations
+
 }

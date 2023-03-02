@@ -9,7 +9,7 @@ import com.example.rickmorty.databinding.ItemEpisodeBinding
 import com.example.rickmorty.databinding.ItemLocationBinding
 import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.models.ItemUi
-import com.example.rickmorty.domain.models.LocationUi
+import com.example.rickmorty.domain.models.LocationInfoUi
 
 class RickMortyAdapter(private val listener: (Int) -> Unit) : ListAdapter<ItemUi, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder<ViewBinding> {
@@ -44,7 +44,7 @@ class RickMortyAdapter(private val listener: (Int) -> Unit) : ListAdapter<ItemUi
             is CharacterUi -> {
                 CHARACTER_ITEM
             }
-            is LocationUi -> {
+            is LocationInfoUi -> {
                 LOCATION_ITEM
             }
             else -> {

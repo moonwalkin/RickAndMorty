@@ -1,10 +1,10 @@
-package com.example.rickmorty.domain.repository
+package com.example.rickmorty.data.remote
 
 import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.models.EpisodeUi
 import com.example.rickmorty.domain.models.LocationInfoUi
 
-interface RickMortyRepository {
+interface RemoteDataSource {
 
     suspend fun fetchLocations(): List<LocationInfoUi>
 

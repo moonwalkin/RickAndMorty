@@ -29,6 +29,8 @@ class DetailsLocationFragment : BaseFragment<FragmentDetailsLocationBinding>(), 
         }
     }
 
+    override fun getTitleRes() = R.string.title_location_details
+
     companion object {
         private const val LOCATION_ID = "location_id"
 
@@ -39,5 +41,4 @@ class DetailsLocationFragment : BaseFragment<FragmentDetailsLocationBinding>(), 
         }
     }
 
-    override fun getTitleRes() = R.string.title_location_details
 }

@@ -20,6 +20,8 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(), HasCustomTitle
         super.onCreate(savedInstanceState)
     }
 
+    override fun getTitleRes() = R.string.title_episodes
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -30,5 +32,4 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(), HasCustomTitle
         }
     }
 
-    override fun getTitleRes() = R.string.title_episodes
 }
