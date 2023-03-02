@@ -3,6 +3,8 @@ package com.example.rickmorty.di
 import android.app.Application
 import androidx.room.Room
 import com.example.rickmorty.data.database.RickMortyDatabase
+import com.example.rickmorty.data.local.LocalDataSource
+import com.example.rickmorty.data.local.LocalDataSourceImpl
 import com.example.rickmorty.data.remote.RemoteDataSource
 import com.example.rickmorty.data.remote.RemoteDataSourceImpl
 import com.example.rickmorty.data.network.RickMortyService
@@ -26,7 +28,11 @@ interface DataModule {
 
     @Binds
     @ApplicationScope
-    fun bindCloudDataSource(impl: RemoteDataSourceImpl): RemoteDataSource
+    fun bindRemoteDataSource(impl: RemoteDataSourceImpl): RemoteDataSource
+
+    @Binds
+    @ApplicationScope
+    fun bindLocalDataSource(impl: LocalDataSourceImpl): LocalDataSource
 
 
     companion object {
