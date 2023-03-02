@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity(), Navigator {
         ) {
             currentFragment = f
             showNavigateUpButton()
-            updateTitle()
         }
     }
 
@@ -76,17 +75,15 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     private fun showNavigateUpButton() {
+        val fragment = currentFragment
+        if (fragment is HasCustomTitle) {
+            title = getString(fragment.getTitleRes())
+        }
+
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         } else {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        }
-    }
-
-    private fun updateTitle() {
-        val fragment = currentFragment
-        if (fragment is HasCustomTitle) {
-            title = getString(fragment.getTitleRes())
         }
     }
 }

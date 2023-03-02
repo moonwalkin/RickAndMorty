@@ -39,6 +39,7 @@ class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>()
         }
     }
 
+    override fun getTitleRes() = R.string.title_character_details
 
     companion object {
         private const val CHARACTER_ID = "character_id"
@@ -50,5 +51,5 @@ class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>()
         }
     }
 
-    override fun getTitleRes() = R.string.title_character_details
+
 }

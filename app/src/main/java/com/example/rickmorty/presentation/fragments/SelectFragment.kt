@@ -14,16 +14,19 @@ class SelectFragment : BaseFragment<FragmentSelectBinding>(), HasCustomTitle {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnCharacters.setOnClickListener {
-            navigate().showCharacters()
-        }
-        binding.btnEpisodes.setOnClickListener {
-            navigate().showEpisodes()
-        }
-        binding.btnLocations.setOnClickListener {
-            navigate().showLocations()
+        binding.apply {
+            btnCharacters.setOnClickListener {
+                navigate().showCharacters()
+            }
+            btnEpisodes.setOnClickListener {
+                navigate().showEpisodes()
+            }
+            btnLocations.setOnClickListener {
+                navigate().showLocations()
+            }
         }
     }
+
     override fun getTitleRes() = R.string.title_home
 
 }

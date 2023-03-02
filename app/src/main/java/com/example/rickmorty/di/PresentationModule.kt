@@ -2,7 +2,7 @@ package com.example.rickmorty.di
 
 import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.models.EpisodeUi
-import com.example.rickmorty.domain.models.LocationUi
+import com.example.rickmorty.domain.models.LocationInfoUi
 import com.example.rickmorty.presentation.Communication
 import com.example.rickmorty.presentation.CommunicationImpl
 import dagger.Binds
@@ -15,10 +15,15 @@ import kotlinx.coroutines.Dispatchers
 interface PresentationModule {
 
     @Binds
+    @ApplicationScope
     fun bindCommunicationCharacter(impl: CommunicationImpl<CharacterUi>): Communication<CharacterUi>
+    
     @Binds
-    fun bindCommunicationLocation(impl: CommunicationImpl<LocationUi>): Communication<LocationUi>
+    @ApplicationScope
+    fun bindCommunicationLocation(impl: CommunicationImpl<LocationInfoUi>): Communication<LocationInfoUi>
+
     @Binds
+    @ApplicationScope
     fun bindCommunicationEpisode(impl: CommunicationImpl<EpisodeUi>): Communication<EpisodeUi>
 
     companion object {

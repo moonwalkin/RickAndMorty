@@ -2,7 +2,7 @@ package com.example.rickmorty.domain.models
 
 
 
-class LocationUi(
+class LocationInfoUi(
     val dimension: String,
     id: Int,
     name: String,
