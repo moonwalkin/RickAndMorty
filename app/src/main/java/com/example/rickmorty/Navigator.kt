@@ -1,12 +1,13 @@
 package com.example.rickmorty
 
 import androidx.fragment.app.Fragment
+import com.example.rickmorty.domain.models.ItemUi
 
 interface Navigator {
     fun showLocations()
     fun showEpisodes()
     fun showCharacters()
-    fun showDetails(id: Int)
+    fun showDetails(item: ItemUi)
 }
 
 fun Fragment.navigate() = requireActivity() as Navigator

@@ -2,18 +2,14 @@ package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.rickmorty.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsCharacterBinding
-import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
 import com.example.rickmorty.domain.models.CharacterUi
 
 class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>(), HasCustomTitle {
     override fun getViewBinding() = FragmentDetailsCharacterBinding.inflate(layoutInflater)
-
-    private val viewModel: CharacterViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
@@ -22,10 +18,8 @@ class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchSingleCharacter(requireArguments().getInt(CHARACTER_ID))
-        viewModel.observeSingleItem(viewLifecycleOwner) { character ->
-            showDetails(character)
-        }
+        val character = requireArguments().getSerializable(CHARACTER) as CharacterUi
+        showDetails(character)
     }
 
     private fun showDetails(character: CharacterUi) {
@@ -42,11 +36,11 @@ class DetailsCharacterFragment : BaseFragment<FragmentDetailsCharacterBinding>()
     override fun getTitleRes() = R.string.title_character_details
 
     companion object {
-        private const val CHARACTER_ID = "character_id"
+        private const val CHARACTER = "character"
 
-        fun newInstance(id: Int) = DetailsCharacterFragment().apply {
+        fun newInstance(character: CharacterUi) = DetailsCharacterFragment().apply {
             arguments = Bundle().apply {
-                putInt(CHARACTER_ID, id)
+                putSerializable(CHARACTER, character)
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.example.rickmorty.domain.models
 
+import java.io.Serializable
+
 
 class CharacterUi(
     val gender: String,
@@ -9,4 +11,4 @@ class CharacterUi(
     name: String,
     val species: String,
     val status: String,
-) : ItemUi(id, name)
+) : ItemUi(id, name), Serializable

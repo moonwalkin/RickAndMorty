@@ -11,7 +11,7 @@ import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.models.ItemUi
 import com.example.rickmorty.domain.models.LocationInfoUi
 
-class RickMortyAdapter(private val listener: (Int) -> Unit) : ListAdapter<ItemUi, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
+class RickMortyAdapter(private val listener: (ItemUi) -> Unit) : ListAdapter<ItemUi, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder<ViewBinding> {
         val viewHolder = when (viewType) {
             CHARACTER_ITEM -> CharacterViewHolder(ItemCharacterBinding.inflate(

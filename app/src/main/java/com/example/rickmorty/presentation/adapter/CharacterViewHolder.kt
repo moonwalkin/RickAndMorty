@@ -7,12 +7,12 @@ import com.example.rickmorty.domain.models.ItemUi
 
 class CharacterViewHolder(binding: ItemCharacterBinding) :
     AbstractViewHolder<ItemCharacterBinding>(binding) {
-    override fun bind(item: ItemUi, listener: (Int) -> Unit) {
+    override fun bind(item: ItemUi, listener: (ItemUi) -> Unit) {
         val character = item as CharacterUi
         binding.apply {
             tvName.text = character.name
             itemView.setOnClickListener {
-                listener(item.id)
+                listener(item)
             }
             Glide.with(root).load(character.image)
                 .circleCrop()

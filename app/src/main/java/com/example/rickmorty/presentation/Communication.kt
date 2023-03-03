@@ -2,15 +2,12 @@ package com.example.rickmorty.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.example.rickmorty.domain.Result
 
 interface Communication<T> {
 
-    fun observeSingleItem(owner: LifecycleOwner, observer: Observer<T>)
+    fun observe(owner: LifecycleOwner, observer: Observer<Result<List<T>>>)
 
-    fun observeListItems(owner: LifecycleOwner, observer: Observer<List<T>>)
-
-    fun showItem(item: T)
-
-    fun showList(listItem: List<T>)
+    fun show(listItem: Result<List<T>>)
 }
 

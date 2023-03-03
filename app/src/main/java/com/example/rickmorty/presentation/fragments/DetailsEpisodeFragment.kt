@@ -2,19 +2,14 @@ package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import com.example.rickmorty.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsEpisodeBinding
 import com.example.rickmorty.domain.models.EpisodeUi
-import com.example.rickmorty.presentation.viewmodels.EpisodeViewModel
 
 class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>(), HasCustomTitle {
 
-    private val viewModel: EpisodeViewModel by viewModels { factory }
-
     override fun getViewBinding() = FragmentDetailsEpisodeBinding.inflate(layoutInflater)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
@@ -23,10 +18,8 @@ class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>(), Ha
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchSingleEpisode(requireArguments().getInt(EPISODE_ID))
-        viewModel.observeSingleEpisode(viewLifecycleOwner) { episode ->
-            showDetails(episode)
-        }
+        val episode = requireArguments().getSerializable(EPISODE) as EpisodeUi
+        showDetails(episode)
     }
 
     private fun showDetails(episode: EpisodeUi) {
@@ -40,11 +33,11 @@ class DetailsEpisodeFragment : BaseFragment<FragmentDetailsEpisodeBinding>(), Ha
     override fun getTitleRes() = R.string.title_episode_details
 
     companion object {
-        private const val EPISODE_ID = "episode_id"
+        private const val EPISODE = "episode"
 
-        fun newInstance(id: Int) = DetailsEpisodeFragment().apply {
+        fun newInstance(episode: EpisodeUi) = DetailsEpisodeFragment().apply {
             arguments = Bundle().apply {
-                putInt(EPISODE_ID, id)
+                putSerializable(EPISODE, episode)
             }
         }
     }
