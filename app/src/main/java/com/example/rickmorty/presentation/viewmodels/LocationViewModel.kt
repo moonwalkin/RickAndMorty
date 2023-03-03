@@ -4,9 +4,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.rickmorty.domain.Result
 import com.example.rickmorty.domain.models.LocationInfoUi
 import com.example.rickmorty.domain.usecases.FetchAllLocationsUseCase
-import com.example.rickmorty.domain.usecases.FetchSingleLocationUseCase
 import com.example.rickmorty.presentation.Communication
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -15,26 +15,16 @@ import javax.inject.Inject
 
 class LocationViewModel @Inject constructor(
     private val fetchAllLocationsUseCase: FetchAllLocationsUseCase,
-    private val fetchSingleUseCase: FetchSingleLocationUseCase,
     private val communication: Communication<LocationInfoUi>,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
-
     fun fetchListLocations() = viewModelScope.launch(dispatcher) {
-        communication.showList(fetchAllLocationsUseCase())
+        communication.show(Result.Loading())
+        communication.show(fetchAllLocationsUseCase())
     }
 
-    fun fetchSingleLocation(id: Int) = viewModelScope.launch(dispatcher) {
-        communication.showItem(fetchSingleUseCase(id))
+    fun observeListLocations(owner: LifecycleOwner, observer: Observer<Result<List<LocationInfoUi>>>) {
+        communication.observe(owner, observer)
     }
-
-    fun observeSingleLocation(owner: LifecycleOwner, observer: Observer<LocationInfoUi>) {
-        communication.observeSingleItem(owner, observer)
-    }
-
-    fun observeListLocations(owner: LifecycleOwner, observer: Observer<List<LocationInfoUi>>) {
-        communication.observeListItems(owner, observer)
-    }
-
 }

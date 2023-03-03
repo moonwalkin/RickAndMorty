@@ -9,6 +9,10 @@ import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
 import com.example.rickmorty.HasCustomTitle
 import com.example.rickmorty.Navigator
 import com.example.rickmorty.R
+import com.example.rickmorty.domain.models.CharacterUi
+import com.example.rickmorty.domain.models.EpisodeUi
+import com.example.rickmorty.domain.models.ItemUi
+import com.example.rickmorty.domain.models.LocationInfoUi
 import com.example.rickmorty.presentation.fragments.*
 
 class MainActivity : AppCompatActivity(), Navigator {
@@ -37,16 +41,16 @@ class MainActivity : AppCompatActivity(), Navigator {
         launchFragment(LocationsFragment())
     }
 
-    override fun showDetails(id: Int) {
+    override fun showDetails(item: ItemUi) {
         when (currentFragment) {
             is CharactersFragment -> {
-                launchFragment(DetailsCharacterFragment.newInstance(id))
+                launchFragment(DetailsCharacterFragment.newInstance(item as CharacterUi))
             }
             is LocationsFragment -> {
-                launchFragment(DetailsLocationFragment.newInstance(id))
+                launchFragment(DetailsLocationFragment.newInstance(item as LocationInfoUi))
             }
             else -> {
-                launchFragment(DetailsEpisodeFragment.newInstance(id))
+                launchFragment(DetailsEpisodeFragment.newInstance(item as EpisodeUi))
             }
         }
     }

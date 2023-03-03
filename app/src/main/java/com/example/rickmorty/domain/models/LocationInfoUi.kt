@@ -1,5 +1,6 @@
 package com.example.rickmorty.domain.models
 
+import java.io.Serializable
 
 
 class LocationInfoUi(
@@ -7,4 +8,4 @@ class LocationInfoUi(
     id: Int,
     name: String,
     val type: String
-): ItemUi(id, name)
+): ItemUi(id, name), Serializable

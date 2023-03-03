@@ -6,12 +6,12 @@ import com.example.rickmorty.domain.models.LocationInfoUi
 
 class LocationViewHolder(binding: ItemLocationBinding) :
     AbstractViewHolder<ItemLocationBinding>(binding) {
-    override fun bind(item: ItemUi, listener: (Int) -> Unit) {
+    override fun bind(item: ItemUi, listener: (ItemUi) -> Unit) {
         val location = item as LocationInfoUi
         binding.apply {
             tvName.text = location.name
             itemView.setOnClickListener {
-                listener(location.id)
+                listener(location)
             }
         }
     }

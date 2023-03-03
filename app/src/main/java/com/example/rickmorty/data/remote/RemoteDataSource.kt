@@ -12,9 +12,4 @@ interface RemoteDataSource {
 
     suspend fun fetchCharacters(): List<CharacterUi>
 
-    suspend fun fetchSingleCharacter(id: Int): CharacterUi
-
-    suspend fun fetchSingleLocation(id: Int): LocationInfoUi
-
-    suspend fun fetchSingleEpisode(id: Int): EpisodeUi
 }

@@ -4,36 +4,27 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.example.rickmorty.domain.Result
 import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.usecases.FetchAllCharactersUseCase
-import com.example.rickmorty.domain.usecases.FetchSingleCharacterUseCase
 import com.example.rickmorty.presentation.Communication
-import com.example.rickmorty.presentation.State
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class CharacterViewModel @Inject constructor(
     private val fetchAllCharactersUseCase: FetchAllCharactersUseCase,
-    private val fetchSingleCharacterUseCase: FetchSingleCharacterUseCase,
     private val communication: Communication<CharacterUi>,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
-    fun fetchSingleCharacter(id: Int) = viewModelScope.launch(dispatcher) {
-       communication.showItem(fetchSingleCharacterUseCase(id))
-    }
-
     fun fetchListCharacters() = viewModelScope.launch(dispatcher) {
-        communication.showList(fetchAllCharactersUseCase())
+        communication.show(Result.Loading())
+        communication.show(fetchAllCharactersUseCase())
     }
 
-    fun observeListItems(owner: LifecycleOwner, observer: Observer<List<CharacterUi>>) {
-        communication.observeListItems(owner, observer)
-    }
-
-    fun observeSingleItem(owner: LifecycleOwner, observer: Observer<CharacterUi>) {
-        communication.observeSingleItem(owner, observer)
+    fun observeListItems(owner: LifecycleOwner, observer: Observer<Result<List<CharacterUi>>>) {
+        communication.observe(owner, observer)
     }
 }
