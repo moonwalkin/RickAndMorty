@@ -2,7 +2,7 @@ package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
-import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsEpisodeBinding
 import com.example.rickmorty.domain.models.EpisodeUi

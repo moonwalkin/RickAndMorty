@@ -3,7 +3,7 @@ package com.example.rickmorty.presentation.fragments
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
-import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentDetailsCharacterBinding
 import com.example.rickmorty.domain.models.CharacterUi

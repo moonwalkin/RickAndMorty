@@ -56,7 +56,7 @@ class RickMortyRepositoryImpl @Inject constructor(
                         it.gender,
                         it.id,
                         it.image,
-                        Location(it.location.name),
+                        Location(it.location.locationName),
                         it.name,
                         it.species,
                         it.status

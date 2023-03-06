@@ -20,6 +20,7 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelScope(LocationViewModel::class)
     fun bindLocationViewModel(viewModel: LocationViewModel): ViewModel
+
     @Binds
     @IntoMap
     @ViewModelScope(EpisodeViewModel::class)

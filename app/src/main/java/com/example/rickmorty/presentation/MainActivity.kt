@@ -6,8 +6,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
-import com.example.rickmorty.HasCustomTitle
-import com.example.rickmorty.Navigator
 import com.example.rickmorty.R
 import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.models.EpisodeUi
