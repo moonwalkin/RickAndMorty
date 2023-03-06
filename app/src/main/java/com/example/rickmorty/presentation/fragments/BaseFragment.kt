@@ -6,18 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.isVisible
+aimport androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.example.rickmorty.RickMortyApp
 import com.example.rickmorty.di.ApplicationComponent
 import com.example.rickmorty.domain.Result
-import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.models.ItemUi
-import com.example.rickmorty.navigate
 import com.example.rickmorty.presentation.adapter.RickMortyAdapter
+import com.example.rickmorty.presentation.navigate
 import com.example.rickmorty.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
@@ -54,8 +51,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             }
             is Result.Error -> {
                 textView.isVisible = true
-                textView.text = result.exception.message
                 progressBar.isVisible = false
+                textView.text = result.exception.message
             }
         }
     }

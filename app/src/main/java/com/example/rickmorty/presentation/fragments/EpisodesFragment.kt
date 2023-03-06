@@ -2,14 +2,11 @@ package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
-import com.example.rickmorty.domain.Result
 import com.example.rickmorty.databinding.FragmentEpisodesBinding
 import com.example.rickmorty.presentation.viewmodels.EpisodeViewModel
 

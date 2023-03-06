@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.presentation
 
 import androidx.annotation.StringRes
 

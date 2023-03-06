@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.presentation
 
 import androidx.fragment.app.Fragment
 import com.example.rickmorty.domain.models.ItemUi

@@ -2,12 +2,9 @@ package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import com.example.rickmorty.HasCustomTitle
+import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
-import com.example.rickmorty.domain.Result
 import com.example.rickmorty.databinding.FragmentCharactersBinding
 import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
 
