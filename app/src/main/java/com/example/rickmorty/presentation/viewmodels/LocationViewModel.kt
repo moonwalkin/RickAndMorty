@@ -19,12 +19,19 @@ class LocationViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
+    init {
+        fetchListLocations()
+    }
+
     fun fetchListLocations() = viewModelScope.launch(dispatcher) {
-        communication.show(Result.Loading())
         communication.show(fetchAllLocationsUseCase())
     }
 
     fun observeListLocations(owner: LifecycleOwner, observer: Observer<Result<List<LocationInfoUi>>>) {
         communication.observe(owner, observer)
+    }
+
+    fun retry() {
+        fetchListLocations()
     }
 }

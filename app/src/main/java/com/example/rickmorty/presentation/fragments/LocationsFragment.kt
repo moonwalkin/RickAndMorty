@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentLocationsBinding
+import com.example.rickmorty.presentation.ScrollListener
 import com.example.rickmorty.presentation.viewmodels.LocationViewModel
 
 class LocationsFragment : BaseFragment<FragmentLocationsBinding>(), HasCustomTitle {
@@ -29,6 +30,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(), HasCustomTit
     }
 
     private fun initRecycler() {
+        val layoutManager = LinearLayoutManager(context)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
                 context,
@@ -36,12 +38,23 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(), HasCustomTit
             )
         )
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.addOnScrollListener(
+            ScrollListener(
+                { viewModel.fetchListLocations() },
+                layoutManager = layoutManager
+            )
+        )
+        binding.tryButton.setOnClickListener {
+            viewModel.retry()
+        }
     }
 
     private fun observeViewModel() {
-        viewModel.fetchListLocations()
         viewModel.observeListLocations(viewLifecycleOwner) { result ->
-            show(binding.errorMessage, binding.progressBar, result)
+            binding.apply {
+                show(recyclerView, progressBar, tvErrorMessage, tryButton, result)
+            }
         }
     }
 }

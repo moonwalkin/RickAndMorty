@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentEpisodesBinding
+import com.example.rickmorty.presentation.ScrollListener
 import com.example.rickmorty.presentation.viewmodels.EpisodeViewModel
 
 class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(), HasCustomTitle {
@@ -29,19 +31,30 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(), HasCustomTitle
     }
 
     private fun initRecycler() {
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
                 context,
                 LinearLayoutManager.VERTICAL
             )
         )
+        binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.addOnScrollListener(
+            ScrollListener(
+                { viewModel.fetchListEpisodes() }, layoutManager
+            )
+        )
+        binding.tryButton.setOnClickListener {
+            viewModel.retry()
+        }
     }
 
     private fun observeViewModel() {
-        viewModel.fetchListEpisodes()
         viewModel.observeListEpisodes(viewLifecycleOwner) { result ->
-            show(binding.errorMessage, binding.progressBar, result)
+            binding.apply {
+                show(recyclerView, progressBar, tvErrorMessage, tryButton, result)
+            }
         }
     }
 

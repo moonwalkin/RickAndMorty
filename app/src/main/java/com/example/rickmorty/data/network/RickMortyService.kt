@@ -7,11 +7,11 @@ import retrofit2.http.Query
 
 interface RickMortyService {
     @GET("location")
-    suspend fun fetchLocations(): ResponseLocations
+    suspend fun fetchLocations(@Query("page") page: Int): ResponseLocations
 
     @GET("character")
-    suspend fun fetchCharacters(): ResponseCharacters
+    suspend fun fetchCharacters(@Query("page") page: Int): ResponseCharacters
 
     @GET("episode")
-    suspend fun fetchEpisodes(): ResponseEpisodes
+    suspend fun fetchEpisodes(@Query("page") page: Int): ResponseEpisodes
 }

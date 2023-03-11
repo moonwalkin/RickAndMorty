@@ -19,12 +19,19 @@ class CharacterViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
+    init {
+        fetchListCharacters()
+    }
+
     fun fetchListCharacters() = viewModelScope.launch(dispatcher) {
-        communication.show(Result.Loading())
         communication.show(fetchAllCharactersUseCase())
     }
 
     fun observeListItems(owner: LifecycleOwner, observer: Observer<Result<List<CharacterUi>>>) {
         communication.observe(owner, observer)
+    }
+
+    fun retry() {
+        fetchListCharacters()
     }
 }
