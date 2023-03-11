@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-aimport androidx.core.view.isVisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.example.rickmorty.RickMortyApp
 import com.example.rickmorty.di.ApplicationComponent
@@ -37,22 +39,32 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     }
 
     protected fun <T : ItemUi> show(
-        textView: TextView,
+        recyclerView: RecyclerView,
         progressBar: ProgressBar,
+        errorTextView: TextView,
+        tryButton: Button,
         result: Result<List<T>>
     ) {
         when (result) {
             is Result.Loading -> {
+                tryButton.isVisible = false
+                errorTextView.isVisible = false
+                recyclerView.isVisible = false
                 progressBar.isVisible = true
             }
             is Result.Success -> {
+                tryButton.isVisible = false
+                errorTextView.isVisible = false
+                recyclerView.isVisible = true
                 progressBar.isVisible = false
                 adapter.submitList(result.data)
             }
             is Result.Error -> {
-                textView.isVisible = true
+                tryButton.isVisible = true
+                errorTextView.isVisible = true
                 progressBar.isVisible = false
-                textView.text = result.exception.message
+                recyclerView.isVisible = false
+                errorTextView.text = result.exception.message
             }
         }
     }

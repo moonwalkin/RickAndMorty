@@ -19,13 +19,19 @@ class EpisodeViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
+    init {
+        fetchListEpisodes()
+    }
 
     fun fetchListEpisodes() = viewModelScope.launch(dispatcher) {
-        communication.show(Result.Loading())
         communication.show(fetchAllEpisodesUseCase())
     }
 
     fun observeListEpisodes(owner: LifecycleOwner, observer: Observer<Result<List<EpisodeUi>>>) {
         communication.observe(owner, observer)
+    }
+
+    fun retry() {
+        fetchListEpisodes()
     }
 }

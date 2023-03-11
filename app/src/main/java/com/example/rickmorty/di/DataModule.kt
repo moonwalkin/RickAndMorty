@@ -34,7 +34,6 @@ interface DataModule {
     @ApplicationScope
     fun bindLocalDataSource(impl: LocalDataSourceImpl): LocalDataSource
 
-
     companion object {
 
         @Provides

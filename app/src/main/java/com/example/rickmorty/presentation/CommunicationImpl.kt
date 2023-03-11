@@ -15,6 +15,7 @@ class CommunicationImpl<T> @Inject constructor() : Communication<T> {
     }
 
     override fun show(listItem: Result<List<T>>) {
+        listItems.value = Result.Loading()
         listItems.value = listItem
     }
 }
