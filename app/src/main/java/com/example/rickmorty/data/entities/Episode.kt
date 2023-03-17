@@ -6,7 +6,7 @@ import com.example.rickmorty.data.mapper.Mapper
 import com.example.rickmorty.domain.models.EpisodeUi
 import com.squareup.moshi.Json
 @Entity(tableName = "episode")
-class Episode(
+data class Episode(
     @field:Json(name = "air_date")
     val air_date: String,
     @field:Json(name = "episode")
