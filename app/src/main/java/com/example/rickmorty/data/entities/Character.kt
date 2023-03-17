@@ -8,7 +8,7 @@ import com.example.rickmorty.domain.models.CharacterUi
 import com.squareup.moshi.Json
 
 @Entity(tableName = "character")
-class Character(
+data class Character(
     @field:Json(name = "gender")
     val gender: String,
     @field:Json(name = "id")

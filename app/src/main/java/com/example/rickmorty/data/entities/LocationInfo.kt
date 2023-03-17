@@ -7,7 +7,7 @@ import com.example.rickmorty.domain.models.LocationInfoUi
 import com.squareup.moshi.Json
 
 @Entity(tableName = "location")
-class LocationInfo(
+data class LocationInfo(
     @field:Json(name = "dimension")
     val dimension: String,
     @Json(name = "id")
