@@ -31,6 +31,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(), HasCustomT
         observeViewModel()
     }
 
+
     private fun initRecycler() {
         val layoutManager = GridLayoutManager(context, 3)
         binding.recyclerView.adapter = adapter

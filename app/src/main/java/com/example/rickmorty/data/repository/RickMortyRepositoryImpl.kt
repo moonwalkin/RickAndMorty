@@ -19,55 +19,68 @@ class RickMortyRepositoryImpl @Inject constructor(
 ) : RickMortyRepository {
     override suspend fun fetchLocations(): Result<List<LocationInfoUi>> {
         return try {
-            if (localDataSource.fetchLocations().isEmpty()) {
-                localDataSource.addLocations(remoteDataSource.fetchLocations().map {
-                    LocationInfo(it.dimension, it.id, it.name, it.type)
-                })
-            }
+            localDataSource.addLocations(remoteDataSource.fetchLocations().map {
+                LocationInfo(it.dimension, it.id, it.name, it.type)
+            })
             Result.Success(
                 localDataSource.fetchLocations().map { locations ->
                     locations.map()
                 })
         } catch (e: Exception) {
-            Result.Error(e)
+            if (localDataSource.fetchLocations().isEmpty()) {
+                Result.Error(e)
+            } else {
+                Result.Success(
+                    localDataSource.fetchLocations().map { locations ->
+                        locations.map()
+                    })
+            }
         }
     }
 
     override suspend fun fetchEpisodes(): Result<List<EpisodeUi>> {
         return try {
-            if (localDataSource.fetchEpisodes().isEmpty()) {
-                localDataSource.addEpisodes(remoteDataSource.fetchEpisodes().map {
-                    Episode(it.air_date, it.episode, it.id, it.name)
-                })
-            }
+            localDataSource.addEpisodes(remoteDataSource.fetchEpisodes().map {
+                Episode(it.air_date, it.episode, it.id, it.name)
+            })
             Result.Success(localDataSource.fetchEpisodes().map { episodes ->
                 episodes.map()
             })
         } catch (e: Exception) {
-            Result.Error(e)
+            if (localDataSource.fetchEpisodes().isEmpty()) {
+                Result.Error(e)
+            } else {
+                Result.Success(localDataSource.fetchEpisodes().map { episodes ->
+                    episodes.map()
+                })
+            }
         }
     }
 
     override suspend fun fetchCharacters(): Result<List<CharacterUi>> {
         return try {
-            if (localDataSource.fetchCharacters().isEmpty()) {
-                localDataSource.addCharacters(remoteDataSource.fetchCharacters().map {
-                    Character(
-                        it.gender,
-                        it.id,
-                        it.image,
-                        Location(it.location.locationName),
-                        it.name,
-                        it.species,
-                        it.status
-                    )
-                })
-            }
+            localDataSource.addCharacters(remoteDataSource.fetchCharacters().map {
+                Character(
+                    it.gender,
+                    it.id,
+                    it.image,
+                    Location(it.location.locationName),
+                    it.name,
+                    it.species,
+                    it.status
+                )
+            })
             Result.Success(localDataSource.fetchCharacters().map { characters ->
                 characters.map()
             })
         } catch (e: Exception) {
-            Result.Error(e)
+            if (localDataSource.fetchCharacters().isEmpty()) {
+                Result.Error(e)
+            } else {
+                Result.Success(localDataSource.fetchCharacters().map { characters ->
+                    characters.map()
+                })
+            }
         }
     }
 }
