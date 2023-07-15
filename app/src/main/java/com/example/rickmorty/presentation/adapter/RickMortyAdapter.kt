@@ -12,6 +12,7 @@ import com.example.rickmorty.domain.models.ItemUi
 import com.example.rickmorty.domain.models.LocationInfoUi
 
 class RickMortyAdapter(private val listener: (ItemUi) -> Unit) : ListAdapter<ItemUi, AbstractViewHolder<ViewBinding>>(CharacterDiffUtil()) {
+    var onScroll: (() -> Unit) = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder<ViewBinding> {
         val viewHolder = when (viewType) {
             CHARACTER_ITEM -> CharacterViewHolder(ItemCharacterBinding.inflate(
@@ -36,7 +37,11 @@ class RickMortyAdapter(private val listener: (ItemUi) -> Unit) : ListAdapter<Ite
     }
 
     override fun onBindViewHolder(holder: AbstractViewHolder<ViewBinding>, position: Int) {
-        holder.bind(getItem(position), listener)
+        val item = getItem(position)
+        holder.bind(item, listener)
+        if (currentList.size - 3 > 3 && position > currentList.size - 3) {
+            onScroll()
+        }
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -72,8 +72,8 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     private fun launchFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
-            .addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).addToBackStack(null)
+            .commit()
     }
 
     private fun showNavigateUpButton() {

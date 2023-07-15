@@ -26,6 +26,7 @@ interface PresentationModule {
     @ApplicationScope
     fun bindCommunicationEpisode(impl: CommunicationImpl<EpisodeUi>): Communication<EpisodeUi>
 
+
     companion object {
         @Provides
         fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main

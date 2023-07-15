@@ -2,6 +2,7 @@ package com.example.rickmorty.di
 
 import android.app.Application
 import androidx.room.Room
+import com.example.rickmorty.data.ResultHandler
 import com.example.rickmorty.data.database.RickMortyDatabase
 import com.example.rickmorty.data.local.LocalDataSource
 import com.example.rickmorty.data.local.LocalDataSourceImpl
@@ -33,6 +34,9 @@ interface DataModule {
     @Binds
     @ApplicationScope
     fun bindLocalDataSource(impl: LocalDataSourceImpl): LocalDataSource
+
+    @Binds
+    fun bindResultHandler(impl: ResultHandler.Base): ResultHandler
 
     companion object {
 
@@ -67,4 +71,5 @@ interface DataModule {
             .build()
             .dao()
     }
+
 }
