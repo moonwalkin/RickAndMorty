@@ -1,5 +1,6 @@
 package com.example.rickmorty.data.repository
 
+import android.util.Log
 import com.example.rickmorty.data.entities.Character
 import com.example.rickmorty.data.entities.Episode
 import com.example.rickmorty.data.entities.Location
@@ -17,6 +18,8 @@ class RickMortyRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : RickMortyRepository {
+
+
     override suspend fun fetchLocations(): Result<List<LocationInfoUi>> {
         return try {
             localDataSource.addLocations(remoteDataSource.fetchLocations().map {

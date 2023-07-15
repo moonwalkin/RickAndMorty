@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentLocationsBinding
-import com.example.rickmorty.presentation.ScrollListener
 import com.example.rickmorty.presentation.viewmodels.LocationViewModel
 
 class LocationsFragment : BaseFragment<FragmentLocationsBinding>(), HasCustomTitle {
@@ -39,12 +38,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(), HasCustomTit
         )
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.addOnScrollListener(
-            ScrollListener(
-                { viewModel.fetchListLocations() },
-                layoutManager = layoutManager
-            )
-        )
+        adapter.onScroll = { viewModel.fetchListLocations() }
         binding.tryButton.setOnClickListener {
             viewModel.retry()
         }

@@ -1,13 +1,13 @@
 package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.FragmentCharactersBinding
-import com.example.rickmorty.presentation.ScrollListener
 import com.example.rickmorty.presentation.viewmodels.CharacterViewModel
 
 class CharactersFragment : BaseFragment<FragmentCharactersBinding>(), HasCustomTitle {
@@ -31,14 +31,13 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(), HasCustomT
         observeViewModel()
     }
 
-
     private fun initRecycler() {
         val layoutManager = GridLayoutManager(context, 3)
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.addOnScrollListener(ScrollListener({
-            viewModel.fetchListCharacters()
-        }, layoutManager))
         binding.recyclerView.layoutManager = layoutManager
+        adapter.onScroll = {
+            viewModel.fetchListCharacters()
+        }
     }
 
     private fun observeViewModel() {

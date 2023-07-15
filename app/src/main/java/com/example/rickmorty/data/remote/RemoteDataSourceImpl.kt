@@ -1,16 +1,15 @@
 package com.example.rickmorty.data.remote
 
-import com.example.rickmorty.domain.NoConnectionException
-import com.example.rickmorty.domain.ServiceUnavailableException
+import com.example.rickmorty.data.ResultHandler
+import com.example.rickmorty.data.entities.Character
 import com.example.rickmorty.data.entities.Episode
 import com.example.rickmorty.data.entities.LocationInfo
 import com.example.rickmorty.data.network.RickMortyService
-import com.example.rickmorty.data.entities.Character
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(
-    private val service: RickMortyService
+    private val service: RickMortyService,
+    private val resultHandler: ResultHandler
 ) :
     RemoteDataSource {
     private var pageOfCharacters = 1
@@ -18,45 +17,26 @@ class RemoteDataSourceImpl @Inject constructor(
     private var pageOfEpisodes = 1
 
     override suspend fun fetchLocations(): List<LocationInfo> {
-        return try {
+        return resultHandler.handle {
             val data = service.fetchLocations(pageOfLocations)
             if (pageOfLocations < data.page.pagesCount) pageOfLocations++
             data.locations
-        } catch (e: Exception) {
-            if (e is UnknownHostException) {
-                throw NoConnectionException()
-            } else {
-                throw ServiceUnavailableException()
-            }
         }
     }
 
     override suspend fun fetchEpisodes(): List<Episode> {
-        return try {
+        return resultHandler.handle {
             val data = service.fetchEpisodes(pageOfEpisodes)
             if (pageOfEpisodes < data.page.pagesCount) pageOfEpisodes++
             data.episodes
-        } catch (e: Exception) {
-            if (e is UnknownHostException) {
-                throw NoConnectionException()
-            } else {
-                throw ServiceUnavailableException()
-            }
         }
     }
 
     override suspend fun fetchCharacters(): List<Character> {
-        return try {
+        return resultHandler.handle {
             val data = service.fetchCharacters(pageOfCharacters)
             if (pageOfCharacters < data.page.pagesCount) pageOfCharacters++
             data.characters
-        } catch (e: Exception) {
-            if (e is UnknownHostException) {
-                throw NoConnectionException()
-            } else {
-                throw ServiceUnavailableException()
-            }
         }
     }
-
 }

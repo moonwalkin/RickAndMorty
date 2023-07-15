@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.rickmorty.R
 import com.example.rickmorty.domain.Result
 import com.example.rickmorty.domain.models.CharacterUi
 import com.example.rickmorty.domain.usecases.FetchAllCharactersUseCase

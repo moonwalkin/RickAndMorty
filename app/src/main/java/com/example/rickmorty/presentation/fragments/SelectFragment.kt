@@ -1,6 +1,7 @@
 package com.example.rickmorty.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.rickmorty.presentation.HasCustomTitle
 import com.example.rickmorty.R
@@ -26,7 +27,5 @@ class SelectFragment : BaseFragment<FragmentSelectBinding>(), HasCustomTitle {
             }
         }
     }
-
     override fun getTitleRes() = R.string.title_home
-
 }
